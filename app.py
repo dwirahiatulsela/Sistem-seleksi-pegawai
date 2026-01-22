@@ -21,7 +21,7 @@ total_bobot = w1 + w2 + w3
 bobot_values = [w1/100, w2/100, w3/100]
 
 # --- 3. INPUT DATASET ---
-st.subheader("📁 1. Unggah Dataset Pegawai")
+st.subheader("📁 Unggah Dataset Pegawai")
 uploaded_file = st.file_uploader("Pilih file CSV", type="csv")
 
 if uploaded_file is not None:
@@ -109,3 +109,4 @@ else:
     # Tampilan awal jika belum ada file
     st.info("👋 Selamat Datang! Silakan unggah file CSV dataset pelamar di atas untuk memulai perhitungan SAW.")
     st.write("Contoh format kolom yang dibutuhkan: `nama`, `nilai_tes_tertulis`, `nilai_wawancara`, `pengalaman_kerja_tahun`.")
+

@@ -21,10 +21,15 @@ bobot_values = [w1/100, w2/100, w3/100, w4/100, w5/100]
 
 # --- PROSES DATA ---
 try:
-    # Membaca file CSV
-    df = pd.read_csv('dataset_seleksi_pegawai_tetap.csv')
+    # Perbaikan: Mencoba membaca dengan koma, jika gagal/error kolom, coba dengan titik koma
+    try:
+        df = pd.read_csv('dataset_seleksi_pegawai_tetap.csv', sep=',')
+        if 'Kinerja' not in df.columns:
+            raise ValueError
+    except:
+        df = pd.read_csv('dataset_seleksi_pegawai_tetap.csv', sep=';')
     
-    # Membersihkan nama kolom dari spasi yang tidak terlihat
+    # Membersihkan nama kolom dari spasi atau karakter aneh
     df.columns = df.columns.str.strip()
 
     if total_bobot != 100:
@@ -78,3 +83,4 @@ except FileNotFoundError:
     st.error("❌ File 'dataset_seleksi_pegawai_tetap.csv' tidak ditemukan. Pastikan file sudah di-upload ke GitHub.")
 except Exception as e:
     st.error(f"❌ Terjadi kesalahan teknis: {e}")
+
